@@ -1,0 +1,409 @@
+Angular is a Single Page Application(SPA)
+--> index.html is the only web page in the whole application and contains the main page of application
+
+using CLI to generate service,interface,pipes,components,enum,directive,class,module,library,serviceWorker,guard,appShell,application etc.
+  ng generate component componentName -> create a component in a folder named componentName generate/g
+  to not to generate a folder used --flat or --f  at the end of the line
+Javascript Language Specification
+   --> use ECMAScript(ES) versions ES3,ES5 ES 2015(ES6)
+NPM( Node Package Manager)
+   --> is a command-line utility
+   --> npm is the package manager for javascript
+   --> using this,we can install libraries,packages and applications
+
+
+Typescript
+   --> Superset of Javascript
+   --> Open Source
+   --> Transpile to Plain Javascript
+   --> Strong typed
+        -- Variable types are determined using Typescript type definition files (*.d.ts)
+   --> implements ES2015 Class-based object-orientation
+   --> implements classes,interfaces,inheritance
+
+--> According to ES2015 Modules -
+          a file is module and vice-versa ,according to it if we do import or export in a file than that file is module
+          organize our code files
+          Modularize our code
+          promote code reuse
+
+--> Angular Modules -e.g AppModule
+          code files that help organize an application into a cohesive blocks of functionality.
+          organize our application
+          modularize our application
+          promote application boundaries
+          provide a template resolution environment
+            whenever angular sees the directive in template it looks to angularModule(AppModule) for definition
+
+Angular Components
+   --> includes a template that lays out the user interface fragment defining view for application.
+   --> created with HTML and defined what is rendered on page
+   --> use Angular Bindings and directives in the HTML to power up the view
+   --> the class contain code supporting and associating with the view
+          - created with typescript
+          - contains properties and data-elements available for use in view
+          - contain methods: contain logic for the view
+   --> contains MetaData - provide additional information about component to the angular
+           --> MetaData is defined with decorator
+                -- A decorator is a function that adds metadata to the class,its members and its method arguments
+                   -- prefixed with @   //e.g - @Component
+                   -- scope limited to the feature that it decorates
+
+           --> Metadata defines class as Angular Component
+           --> A property defines a data element associated with class
+
+           --> Directive - custom HTML elements/tags or attribute used to power up and extend the html
+                 Angular Build-In Directives
+                   Structural Directive : modifies the structure or layout of view by adding,manipulating or deleting
+                                         elements and their children. '*' at the front of directive makes it structural
+                                         directive.
+                      *ngIf : if logic - a directive that removes or recreate portion of DOM tree based on expression
+                                       - expression is evaluated as true or false
+                      *ngFor : for loop
+                          -- for..of - iterates over iterable objects such as array
+                          -- for..in - iterates over the properties of an object
+           --> template: here we define the user layout
+           --> {{}} (double-curly-braces) indicates data-binding
+   e.g
+       Angular Class
+         export class AppComponent {
+           title = 'AngularGettingStarted'; //class property
+         }
+       Component Decorator - contains metadata that includes template
+          @Component({
+            selector: 'app-root',  //directive name used in HTML -defines the component directive name
+            //templateUrl: './app.component.html',
+            template: `
+                    <div>
+                      <p>{{title}}</p>
+                    </div>
+                    `
+            styleUrls: ['./app.component.css']
+          })
+
+--> import allow us to use exported members from external ES Modules
+
+-----------------------------CheckList While creating Components ----------------------------------------
+--> create a class for the component with code supporting the view
+--> we use decorator to define the component metadata
+--> use PascalCasing- every word of name is capitalized
+--> Append Component to Name
+--> remember to include the export keyword on the class signature.- makes the class accessible to be imported
+-->  data element defined as a property of class - use camelCasing for data-elements
+--> logic is defined a method in class - use camelCasing for methodsName
+--> Component decorator - prefixed with @; and suffix with ()
+--> use selector property to define the component name in html
+--> import - defines where to find the members that component needs
+            - moduleName :enclosed in quotes
+            - memberName : correctSpelling
+            import {memberName} from 'moduleName';
+---------------------------
+component = template + class ( properties + methods ) + metadata
+-------------------------------------------------------------------------------------------------------------
+Templates,Interpolation and Directives
+--> with angular directives we add logic to HTML
+
+Templates
+  create inline-template : with  single quoted string e.g template:"<h1>{{title}}</h1>"
+                         : with back-tick use for multiline string e.g  template: `
+                                                                                   <div>
+                                                                                     <h1>{{title}}</h1>
+                                                                                   </div>
+                                                                                   `
+                         BackTick allows composing a string over several lines.
+  Linked Template:  e.g templateUrl: './app.component.html'
+
+--> Bindings - Coordinates communication between the component's class and its template and often involves passing data
+  Interpolation - {{}} - signifies interpolation are readily recognizable
+       - the text between the curly-braces are called template expression
+
+  Property Binding - allows us to set property of an element to the value of template expression
+                   -  binding target is always enclosed in [] and identify as an property of element
+                   - binding source is always enclosed in ''(quotes) and specifies the template expression
+                e.g <img [src] ='product.imageUrl'>
+
+  Event Binding - A Component listens to user actions through event binding
+                - the name of Bound event is enclosed in parenthesis identifying it as the target event
+                - the right hand-side is the template statement which is often the component class method
+                  followed by open and closing parenthesis and enclosed in quotes.
+                  e.g <button (click) = 'toggleImage()'>Show</button>
+
+  Two Way Binding - we used ngModel directive also called eventBinding inside property binding
+          - ngModel is part of FormsModule so add FormModule in AppModule from'angular/forms' package
+          - [] indicates property Binding - from the class property to the input element
+          - () indicates event Binding - send the notification of user entered data back to the class
+  e.g <input [(ngModel)] = 'listFilter'/>
+
+  Transforming Data with Pipes
+
+       - Pipes provides a convenient way to transform bound properties before displaying it in the view
+
+         -- built-in pipes for formatting values:
+                data,number,decimal,percent,currency,json,slice,uppercase,lowercase etc.
+
+         -- pipes for working with objects:
+              json pipe to display the content of object as JSON string
+              slice pipe which select a subset of elements from list
+
+         -- we can also built our own custom pipes
+
+        e.g {{productCode | lowercase}} here | is called pipe
+       - we can also used pipe in property binding
+          <img [title]='productName | uppercase'/>
+       - we can chain pipes
+         {{price | currency | lowercase}}
+       - Some pipes support parameters - we can add parameters separated by colon
+          parameters are defined by specifying colon and parameter value
+           {{price | currency : 'USD' : 'symbol':'1.2-2'}}
+              Here 1.2-2 :
+                   digit info[
+                              minNumberOfDigits.minimumNumberOfFractionalDigits-maximumNumberOfFractionalDigits
+                                 1.2-2 signifies that
+                                 atLeast 1 digit at the left of decimal,
+                                 atLeast 2 digits at the right of decimal,
+                                 noMore than 2 digits at the right of decimal,
+                               ]
+                   USD : desire currency code
+                   symbol : string specifying how to show the currency symbol
+--------------------------------------------------------------------------------------
+How can we improve our Components
+ -- through strong typing(syntax checking) and using interfaces.
+
+ -- Encapsulate Styles: if component needs special styles ,we can encapsulate those styles within the components to ensure that they don't leak out
+      any other component in application.
+      styles -> specify an array of style strings
+        e.g styles: [ 'thead{color:#000111;}']
+      styleUrls -> specify an array of stylesheet paths
+ -- Lifecycle Hooks : A component has lifecycle managed by angular,angular provides a set of Lifecycle hooks we can use to tap into keypoints in their lifecycle
+     adding flexibility and responsiveness to our application.
+
+ -- Custom Pipes: using @Pipe decorator
+      @Pipe({
+        name:'reasonName'
+      })
+      export class CustomPipe implements PipeTransform{
+        transform(value:string,character:string):string{}
+      }
+
+ -- Nested Components : minimized development time and improve quality overall
+
+
+---------------------------------------------------------------------------------------
+Interface - a specification identifying a related set of properties and methods
+          - A class commits to supporting the specification by implementing the interface
+          - we can then use the interface as a datatype
+          - ES5 & ES2015 doesn't support interfaces
+          - Typescript support interfaces
+          - used only for development time
+          - Naming Conventions: interface are prefixed with I followed by purposeName
+Encapsulating Styles - Component have styleUrls and styles to encapsulate styles
+Lifecycle Hooks - angular manages the lifecycle of component
+-------------------------------------------------------------------------------
+    Component Lifecycle:
+       Create->
+          Render->
+             Create & Render Children->
+                 Process Changes(processes changes when its data bound properties are changed->
+                     Destroy(destroy its before removing it template from DOM)
+
+ ---------------------------------------------------------------------------
+Angular provides a set of lifecycle hooks we can use to tap into this lifecycle and perform some useful operations
+  e.g onInit -> perform component initialization ,retrieve data
+      onChanges -> perform action after change to input properties
+      onDestroy -> perform cleanup
+
+Filtering Data
+     using filter utility
+      array.filter()
+
+Nested Components : we can nest our component within other component
+    @Input() is used by container to pass data to the nested component
+           by binding to nested component property that is deorated with Input() decorator.
+    @Output() - if nested component send information back to container, it can raise an event.
+                 nested component exposes an event it can use to pass output to its container using
+                 the @Output decorator
+              - We can use Output decorator to decorate any property[property type must be event] of nested component
+                 class.
+              - The only way nested component pass data to container is only through events
+              - The data to pass becomes the event payload
+           - In angular, an event is defined with EventEmitter object
+           @Output() notify: EventEmitter<T> = new EventEmitter<T>(); // T can be string|integer|object|any
+
+--------------------------------------------------------------------------------------
+Service
+  A class with focused purpose
+  CheckList:
+      --- usePascalCasing
+      --- Append 'Service' to that name
+      --- export keyword
+      --- serviceDecorator - @Injectable()- prefix by @ and suffix opening and closing parenthesis
+      --- use the Root Application Injector if the service is used throughout the application
+      --- specific component's injector if only that component used that service
+  used for features that:
+   --  are independent from any particular component .
+   --  provide shared data or logic across components .
+   --  encapsulate external interactions .
+   --  when registering the service with angular ,angular creates a single instance of
+          service class called singleton and holds onto it.
+       -- angular provides built-in injectors,we register our service with angular injector which maintains an
+          container of created service instances.The injector creates or manages the single instances or
+          singleton of each registered services.Since angular manages all the services ,all the data & logic
+          are shared across all the components using it.
+   -- if component needs an service it will do so using dependency injection.
+               constructor( private service:MyService){} -- service is injected when component is instantiated
+   -- Dependency Injection : A coding pattern in which a class receives the
+                            instances of an object it needs (Called dependencies) from an external source
+                            rather than creating them itself.in angular,the external source is angular injector.
+        -- Types of Injector for Services
+            -- Root Injector: Service is available throughout the application
+                          -- @Injectable({ providedIn: 'root'}) - make that service available to all the
+                                   components-Root Injector
+                                Service Injectable Decorator
+                              ---------------------------------------
+                              - Set the providedIn property to 'root'
+                              ---------------------------------------
+            -- Component Injector
+              -- Service is only available to that component
+                    and its child and nested components.
+              -- isolate service that is used by only one component and its children
+              -- provide multiple instances of service for multiple instances of component
+              -- if we want that service only for particular component
+                    then write it in that component : Component Injector
+                        @Component({
+                           selector: 'app-products',
+                            templateUrl: './product-list.component.html',
+                            styleUrls: ['./product-list.component.css'],
+                            providers:[ProductService]
+                         })
+                        then that service is available to that component and its children
+                           Component Decorator
+                        ------------------------------------------------------
+                          set the providers property to the service
+                        ------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
+Retrieving Data using HTTP
+  -- Observables and Reactive Extensions(RxJS)
+      Reactive Extensions represent an stream of Data Sequence as Observable Sequence
+          called as an observable.
+          -- Observable
+                - help us manage asynchronous data such as data coming from back-end service
+                - Observable treats events as a collection
+                - it will be called as an array whose items arrive asynchronously over time
+                - method in code can subscribe to observable to receive asynchronous notifications as new data arrives.
+                   ,the method then can react as data pushed into it.method is notified when there is no more data
+                    and when error occurs
+                - Observable help us to manipulate sets of events with operators
+                    - operators are methods on observables that compose new observables
+                    - Each operator transform the source observable in some way,operators do not wait for all of the
+                        values and process them at once.rather operators on observables process each value as it is
+                        emitted.eg - merge,filter,map,reduce,take etc.
+                    - we compose observable operators with the observable pipe method hence the reason those observable operators are called 'pipeable' operators
+                      // By Convention, variable suffixed with $ that holds an observable
+                      Composing Operators example:
+                         import {Observable,range} from 'rxjs';
+                         import {map,filter} from 'rxjs/operators'
+                         const source$ :Observable<number> = range(0,9);
+                         source$.pipe(
+                           map(x->x*2),
+                           filter(x=>x%2==0)
+                         ).subscribe(x=>console.log(x));
+
+                =============================================================
+                Difference between promise and observable
+                 -- Promise return a single future value while observable emits multiple asynchronous values over time.
+                 -- Promise is not Lazy,Observable are lazy by default,they do not emit values until they subscribed to.
+                 -- Promise is non-cancellable, it will be resolved or rejected only once,an observable can be cancelled'
+                      by unsubscribe
+                 -- Observable support map,filter,reduce,take and similar operators
+                     service.subscribe(); or
+                     service.subscribe(optional args:Observer);
+                 let sub = service.subscribe(
+                       {
+                         nextFn - process the next emitted value,the next function is called for each value observable emits,
+                         errorFn - executes if there is an error,
+                         completeFn - executes on completion
+                       }
+                      )
+                  sub.unsubscribe();
+                     Observer object observe the stream and responds to three types of notification:
+                        -- next
+                        -- error
+                        -- complete
+------------------------------------------------------------------------------------------------------------------------
+Navigation & Routing Basics
+   -- Asynchronous calls makes the data to show before it is retrieved results in undefined result or cause error
+       e.g     {{pageTitle + ':'+product.productName}} - this line tried to get the productName before it is retrieved
+                                                         resulted undefined.
+    To prevent this:
+     - we can use safe navigation Operator(?) which guard against null and undefined values when navigating through
+                object's properties
+        e.g:   {{pageTitle + ':'+product?.productName}}
+        if product Object is null || undefined then safeNavigationOperator returns null and does not attempt to
+                access the productName property hence we don't get undefined property error
+
+        -- it does not work when use with the [(ngModel)] two way binding.
+     - we can use *ngIf to check before if the product is null || undefined so it go ahead if product is not null|undefined
+          <div class="card" *ngIf='product'>
+            <div class="card-header">
+              {{pageTitle + ':'+product.productName}}
+            </div>
+          </div>
+Routing
+   -- CheckList
+       -- defining the base-element in index.html e.g  <base href="/">
+       -- import Routing Module in AppModule
+       -- RouterModule.for([...{path:'',component:[]}]) here we specify the router path
+            -- for path:
+                   -- no leading slashes,
+                   -- '' for default routes
+                   -- '**' for wildcard route
+       -- then in html we use [routerLink] of RouterModule to specify the location
+          <a [routerLink]="['/path']"></a> //from path angular locates the PathComponent and creates it instance
+       -- now we need to specify where we want the routing component to display
+         <router-outlet>  directive identifies where to display the routed component's view
+                          specified in the hosted component's html
+           use <route-outlet></router-outlet> ,the component-view  is injected in the location defined
+                     by router-outlet directive and the page is displayed
+            ---How Router Works
+           e.g <a [routerLink] = "['/products']"></a>
+               when the user navigates to the feature tied to route with routerLink directive,the routerLink uses the
+               link parameter array to compose the url segment,the browser's location url changed to application url plus
+               the composed url segment.The router searches through the list of valid route definitions
+                            {path:'products',component: ProductListComponent}
+                and pick the first match .The router locates or creates an instance of component associated with that
+                route,The component view is injected in the location defined by the router-outlet directive and the page
+                is displayed
+ --- Passing Parameter to route
+      <a [routerLink]="['/products',product.productId]">{{product.productName}}</a>
+      in AppModule {path:'products/:id',ProductDetailsComponent}
+      ProductDetailsComponent reach this parameter from URL ,it then uses this parameter to retrieve the product.
+      To get the parameter from URL we used ActivatedRoute service provide by angular/routers
+         there are two ways to get the parameter - using observable or using snapshot
+           use snapshot if you want to get only the initial value of parameter
+           if you expect the parameter to change without leaving the page then use Observable
+ To goto Previous Page we used Route Services
+          -- add Router into AppModule imports
+          -- constructor(private router:Router){}
+          -- onBack(){this.route.navigate['./backRoute']}
+          -- <button (click) = 'onBack()'></button>
+Guard - Sometimes,we want to limit access to routes ,we want routes only accessible to specific users
+       or we want from the user to confirm the navigation Operation such as save before navigating away from
+       an editPage.
+       Angular Router Provides Several Guards:
+        1. canActivate : Guard navigation to route
+        2. canDeactivate : Guard navigation away from the current route
+        3. resolve : to prefetch data before activating a route
+        4. canLoad : prevent asynchronous routing
+Module - is a class with NgModule decorator
+        purpose:
+            - organize the pieces of application.
+            - Arrange them into blocks
+            - Extend our application with capabilities from external libraries.
+            - provide a template resolution environment
+            - aggregate and re-export : modules are great way to selectively aggregate classes from
+                  other modules and reexport them into consolidated convenience module.
+              All declared components,directives add pipes are private by defaults.
+              only accesible to other components,directive,and pipes in the same module
+
+            -

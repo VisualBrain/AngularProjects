@@ -1,0 +1,10 @@
+<nav class="navbar navbar-expand shadow-sm ">
+  <div class="navbar-brand">{{pageTitle}}</div>
+  <ul class=" nav nav-pills">
+    <li ><a [routerLink]="['/welcome']" class="nav-item nav-link">Home</a></li>
+    <li ><a [routerLink]="['/products']" class="nav-item nav-link">Product List</a></li>
+  </ul>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
