@@ -1,0 +1,39 @@
+Angular Form Technologies
+ - Template-driven Forms: Use component's Template and unit-testing against DOM
+ - Reactive Forms: - Use component's Template, create a form module in typescript(synced with template)
+                   - Unit-test against Form module
+                   - Validation in form Model
+----------------------------------------------------------------------------------------
+ngForm - is a angular form directive used to control forms
+   <form #form='ngForm'></form> here #form is a variable we used anywhere
+    here #form is template reference variable which we can access throughout the html page
+ngModel - helps build value objects - Creates a FormControl instance from a domain model and binds it to a form control element.
+Two-Way-Binding : use Banana in Box Syntax - [(ngModel)]
+------------------------------------------------
+Validation
+ngNativeValidate - is a directive allow the browser to validate each control.
+Validation Classes in Angular -
+------------------------------------------------------
+    -- ng-touched - when we visit the field
+    -- ng-untouched - when we didn't visit the field
+    -------------------------------------------------
+    ----------------------------------------------
+    -- ng-pristine - when we didn't modify the field value - unmodified
+    -- ng-dirty - when we modify the field value-the field has been modified
+    ------------------------------------------------
+    -----------------------------------------------------
+    -- ng-valid - as long as field is valid ng-valid will be a class name for that field
+    -- ng-invalid - if the field is invalid then ng-invalid is the class name for that field
+-----------------------------------------------------------------------------------
+NgModel properties for Validation -we don't put the ng- prefix
+-----------------------------------------------------------------------------------
+-- ng-untouched  -- in ngModel properties are --- untouched
+-- ng-touched -- in ngModel properties are  --- touched
+-- ng-pristine -- in ngModel properties are --- pristine
+-- ng-dirty -- in ngModel properties are --- dirty
+-- ng-valid -- in ngModel properties are --- valid
+-- ng-invalid -- in ngModel properties are --- invalid
+
+for using webservice we are using putsReq
+
+

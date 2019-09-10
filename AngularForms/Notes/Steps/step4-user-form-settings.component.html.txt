@@ -1,0 +1,54 @@
+<div class="container">
+    <h2>User Settings</h2>
+    <form class="p-2" #form="ngForm" ngNativeValidate>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" class="form-control" placeholder="Name" [(ngModel)]='userSettings.name'
+             required minlength="4" #classTest/>
+        </div>
+        <div>
+            <input type="checkbox" name="emailOffers" value="Email Special Offers" id="emailSpecialOffers"
+                [(ngModel)]='userSettings.emailOffers' />
+            Email Special Offers
+        </div>
+        <p>User Interface Styles</p>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="interfaceStyle" id="lightInterface" value="light"
+                    checked [(ngModel)]='userSettings.interfaceStyle' />
+                <label class="form-check-label" for="lightInterface">Light</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="interfaceStyle" id="mediumInterface" value="Medium"
+                    checked [(ngModel)]='userSettings.interfaceStyle' />
+                <label class="form-check-label" for="mediumInterface">Medium</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="interfaceStyle" id="darkInterface" value="Dark"
+                    checked [(ngModel)]='userSettings.interfaceStyle' />
+                <label class="form-check-label" for="darkInterface">Dark</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="subscriptionType">Subscription Type</label>
+            <select class="form-control" id="subscriptionType" name="subscriptionType"
+                [(ngModel)]='userSettings.subscriptionType'>
+                <option value="Monthly">Monthly</option>
+                <option value="Annual">Annual</option>
+                <option value="Lifetime">Lifetime</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" class="form-control" rows="3" [(ngModel)]='userSettings.notes'></textarea>
+        </div>
+        <button class="btn btn-light">Submit</button>
+    </form>
+</div>
+<br />
+{{userSettings | json}}
+<br />
+Original User Settings
+{{originalUserSettings | json}}
+<br/>
+{{classTest.className}} <!-- give result in the form of ng-dirty ng-valid ng-touched-->

@@ -1,0 +1,48 @@
+<div class="container">
+    <h2>User Settings</h2>
+    <form class="p-2" #form="ngForm">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" class="form-control" placeholder="Name" ngModel />
+        </div>
+        <div>
+            <input type="checkbox" name="receive offers" value="Email Special Offers" id="emailSpecialOffers" ngModel />
+            Email Special Offers
+        </div>
+        <p>User Interface Styles</p>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="interfaceStyle" id="lightInterface" value="light"
+                    checked ngModel />
+                <label class="form-check-label" for="lightInterface">Light</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="interfaceStyle" id="mediumInterface" value="Medium"
+                    checked ngModel />
+                <label class="form-check-label" for="mediumInterface">Medium</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="interfaceStyle" id="darkInterface" value="Dark"
+                    checked ngModel />
+                <label class="form-check-label" for="darkInterface">Dark</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="subscriptionType">Subscription Type</label>
+            <select class="form-control" id="subscriptionType" name="plans" ngModel>
+                <option value="Monthly">Monthly</option>
+                <option value="Annual">Annual</option>
+                <option value="Lifetime">Lifetime</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" class="form-control" rows="3" ngModel></textarea>
+        </div>
+        <button class="btn btn-light">Submit</button>
+    </form>
+</div>
+<!-- {{form | json}} form is a variable we used anywhere we defined it in line <form #form="ngForm"> -->
+{{form.value | json}}
+<!-- through this we can access values of element using ngModel-->
+<!--#form is a template-reference-variable-->

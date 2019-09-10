@@ -1,0 +1,4 @@
+
+.ng-invalid:not(form).ng-touched { /* ng-invalid will apply on being touched ,don't push space between selectors*/
+    border: 1px solid red;
+}

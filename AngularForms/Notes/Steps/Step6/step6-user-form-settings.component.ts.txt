@@ -1,0 +1,27 @@
+import { Component, OnInit } from '@angular/core';
+import { UserSettings } from '../data/user-settings';
+
+@Component({
+  selector: 'app-user-form-settings',
+  templateUrl: './user-form-settings.component.html',
+  styleUrls: ['./user-form-settings.component.css']
+})
+export class UserFormSettingsComponent implements OnInit {
+
+  /**by name */
+  originalUserSettings:UserSettings ={
+    name:null,
+    emailOffers:null,
+    interfaceStyle:null,
+    subscriptionType:null,
+    notes:null
+  };
+  //preserving the original Settings, we make a copy of original
+  userSettings:UserSettings = {...this.originalUserSettings}; //using spread operators//copy the originalUserSettings into userSettings
+
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+}
