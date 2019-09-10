@@ -1,0 +1,84 @@
+Managed by Google
+Features -
+    -- built progressive Web Apps
+    -- support Lazy Loading using observer ,limit the size of data downloaded from web server
+    -- forms library @angular/forms
+    -- build on top of rxjs library.rxjs is a modern library used to handle asynchronous data.
+    -- fully featured Router
+    -- Animations Library @angular/animations
+    -- Server side rendering - process of rendering first page view on html,server create the html
+    -- Mobile Friendly
+    -- Angular Language Service - for debugging purpose
+    -- Angular has ngUpdate - this library allow us to take an existing angularJs and render into angular
+Versions of Angular
+  -- Angular Js -released in 2010
+       -- Version 1.x
+       -- Does not Support Mobile Devices
+       -- Based on MVC(Model-View-Controller) Architecture
+       -- Controllers and view communicates through $scopes
+       -- Run on only client-side
+       -- ng-app,ng-controller,ng-model and many more directive need to remember
+  -- Angular 2.O -released in 2016
+       -- Rewritten
+       -- Language Support [(TypeScript, JavaScript, Dart, PureScript and Elm] 
+       -- Support Mobile Devices
+       -- Only TypeScript 1.8 version was supported
+       -- Web components based architecture
+       -- Supports Hierarchical Dependency Injection
+       -- Runs on client-side & server-side
+       -- Not Backward Compatible with AngularJs
+       -- No Animation Feature
+  -- Angular 4.0 released in March 2017
+       -- Inherited from Angular 2.O
+       -- Supports TypeScript 2.1 and TypeScript 2.2
+       -- The bundle's size is further reduced by 60%,Thereby helping in accelerated Application Development.
+       -- Animation moved out to a separated package @angular/animations before it was in @angular/core package
+       -- else block introduced [we can use else with *ngIf)
+       -- Depend on i18n to support internationalization in our application.
+       -- using @angular/HTTP module for all kinds of HTTP requests
+  -- Angular 5.O released in November 2017
+       -- Support Typescript 2.3
+       -- Build optimizer - removed unnecessary code from your application
+       -- Angular Universal State Transfer API and DOM Support - Share the state of the application between the server-side and client-side very easily
+       -- Internationalized Date and Currency package included
+       -- Preserve Whitespace - we control whether restrict newLines,whitespace,tab in our code or not.
+       -- No need of i18n, it provides a new date, number, and currency pipes which increases the internationalization across all the browsers 
+                      and eliminates the need of i18n polyfills.introduced new pipes for dealing with numbers, dates, and currencies. 
+       -- using HttpClientModule for all kinds of HTTP requests which comes under @angular/common/http package
+       -- support Lambda expressions
+       -- Improved in faster Compiler support - use aot(Ahead of Time) - A huge improvement made in an Angular compiler to make the development build 
+                   faster. We can now take advantage of by running the below command in our development terminal window to 
+                   make the build faster using command ng serve/s --aot
+  -- Angular 6 released in May 2018
+       -- Updates in Angular 6 are ng update, Angular Material + CDK components, (Component Development KIT)CLI Workspaces, Animations Performance Improvements, 
+          ng add, and Angular elements.
+       -- introduce Angular Command Line Interface (CLI),CDK(Component Development Kit)
+       -- Angular Material Design Library is added
+       -- using CDK we can build our own library of UI components,supports Responsive Web Design layouts
+       -- new commands are added like ng update,ng add,ng generate
+  -- Angular 7 - released on October 18, 2018
+       -- Support for <Slot> HTML Element with Angular Elements
+       -- CLI or command-line interpreter prompts are updated to v7.0.2
+       -- Angular Material and Component Dev Kit (CDK) - Virtual Scrolling, Refresh, Large lists of data, dynamic loading and unloading of parts of DOM 
+          also were part of the improvements brought in the CDK and Angular Material.the applications in Angular 7 can now also be equipped with drag-and-drop 
+          functionality through importing ScrollingModule or DragDropModule.
+  -- Angular 8 - released on May 28, 2019
+       -- Support for Typescript 3.1
+       -- Ivy engine -  a preview version of Ivy is now available for testing. Ivy is a new rendering engine that will produce smaller                          bundle sizes.
+                         using ng new angular-project --enable-ivy on command line
+----------------------------------------------------------------------------------------------------------------------------------
+Custom Pipe: pure vs impure
+           Pure: only evaluated when input changes
+           Impure:evaluated on every change detection cycle
+RxJS -
+    Promises vs Observables
+    Self subscribe or not
+    Forgetting to subscribe
+    Marking multiple http requests
+    Hot vs cold Observables
+    Shared Observables
+Server Side Rendering Modes - Full pre-render - quick in response
+                            - Dynamic pre-render - whenever web server receive a request,webpages are built by angular universal.
+Zone.js -> state change detection
+     Change Detection = state change => re-render=> cascading changes => re-render
+     Zone.JS is a combination of all of this phases
