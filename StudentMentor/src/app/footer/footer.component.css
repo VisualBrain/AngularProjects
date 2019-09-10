@@ -1,0 +1,21 @@
+.footer{
+    position: absolute;
+    width: 100vw;
+    height: 6vh;
+    display: inline-flex;
+    color: white;
+    padding-bottom: 12px;
+    float: right;
+    flex-direction: inherit;
+    text-align: center;
+    background-color: black;
+    border-top: 1px solid green;
+    bottom: 0;
+  }
+  .nav-link{
+    margin-left: 20px;
+  }
+  .nav-link:hover{
+    color: white;
+    font-size: medium;
+  }

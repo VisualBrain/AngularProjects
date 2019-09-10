@@ -1,0 +1,10 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal navbar-header">{{title}}</h5>
+    <nav class="my-2 my-md-0 mr-md-3 d-inline-block">
+        <a class="p-2 ml-4 text-dark" href="/notification"><i style="float:left" class="material-icons">notification_important</i>Notification</a>
+        <a class="p-2 ml-4 text-dark " href="#">Home</a>
+        <a class="p-2 ml -4 text-dark " [routerLink]= "['/welcome']">Search Course</a>
+        <a  class="p-2 ml-4 text-dark " [routerLink] = "['/login']">Login</a>
+    </nav>
+    <a class="btn btn-outline-primary" [routerLink]="['/signup']">Sign up</a>
+</div>

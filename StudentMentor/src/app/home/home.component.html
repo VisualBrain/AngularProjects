@@ -1,0 +1,55 @@
+<div class="jumbotron text-center bg-transparent">
+    <p class="display-3">Welcome To Mentor On Demand</p>
+    <h5>Where Future Billionaire Come to Learn</h5>
+</div>
+<div class="card container bg-white">
+    <div class="card-header bg-white form-inline text-center float-right flex-row-reverse">
+        <div class="input-group mr-5">
+            <div class="input-group-prepend">
+                <p class="btn bg-light">Technology</p>
+            </div>
+            <select [(ngModel)]='technologyFilter' style="width: 300px;border: none" class="custom-select bg-light">
+                <option class="text-center" value="{{subject}}" *ngFor="let subject of Subjects">{{subject}}</option>
+            </select>
+        </div>
+        <div class="input-group mr-5 position-relative float-right ">
+            <div class="input-group-prepend">
+                <p class="btn bg-light">TimeLine</p>
+            </div>
+            <select [(ngModel)]='timeSlotFilter' style="width: 300px;border: none" class="custom-select bg-light">
+                <option *ngFor=' let time of TimeSlot' value="{{time}}">{{time}}</option>
+            </select>
+        </div>
+        <h5>Search</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table" *ngIf='mentorsSearch && mentorsSearch.length'>
+                <thead>
+                    <tr style="text-align: center">
+                        <th>Image</th>
+                        <th>Mentor Name</th>
+                        <th>Technology</th>
+                        <th>Average Rating</th>
+                        <th>TimeSlot</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let mentor of filteredMentors' style="text-align: center">
+                        <td><img [title]='mentor.mentorName' [alt]='mentor.mentorName' [src]='mentor.mentorImage'
+                                [style.margin.px]='imageMargin' [style.width.px]='imageWidth'
+                                [style.width.px]='imageHeight' /></td>
+                        <td>{{mentor.mentorName}}</td>
+                        <td>{{mentor.technology}}</td>
+                        <td style="text-align: center">
+                            <app-stars [rating]='mentor.averageRating' (ratingClicked)='onRatingClicked($event)'>
+                            </app-stars>
+                        </td>
+                        <td>{{mentor.timeSlot}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

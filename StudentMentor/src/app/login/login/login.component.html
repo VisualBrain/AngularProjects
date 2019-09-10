@@ -1,0 +1,28 @@
+<div class="container mt-4 bg-transparent center d-flex justify-content-center">
+        <div class="card mt-3 position-relative" style="min-width: 300px ;width: 25vw;align-content: center">
+            <div class="card-header bg-transparent">
+                <h5>{{title}}</h5>
+            </div>
+            <div class="card-body bg-transparent">
+                <form class="form">
+                    <div class="form-group">
+                        <label for="nameInput bg-transparent">
+                            <h6>UserName</h6>
+                        </label>
+                        <input class="form-control" id="nameInput" type="text" placeholder="UserName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="birthInput">
+                            <h6>Password</h6>
+                        </label>
+                        <input class="form-control" type="password" placeholder="Password" />
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer bg-transparent float-right">
+                <a class="btn btn-sm btn-success mr-2">Login</a>
+                <a class="btn btn-sm float-right" [routerLink]="['/signup']">Not Registered? Sign Up</a>
+            </div>
+    
+        </div>
+    </div>
