@@ -16,8 +16,4 @@ export class DataService {
    // using httpVariable
    return this.http.post(this.url, userSettings);
   }
-
-  getSubscriptionTypes(): Observable<string[]> {
-    return  of(['Monthly', 'Annual', 'Lifetime']);
-  }
 }

@@ -35,5 +35,10 @@ NgModel properties for Validation -we don't put the ng- prefix
 -- ng-invalid -- in ngModel properties are --- invalid
 
 for using webservice we are using putsReq
+use async while iterating over an array having output in the form of Observable
+    e.g  IN tS
+         name:Observable<string[]>;
+         in html
+       <option>  *ngFor='let i of name | async' </option>
 
 
