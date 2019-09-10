@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display home message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('AngularGettingStarted app is running!');
+    expect(page.getTitleText()).toEqual('Angular Getting Started');
   });
 
   afterEach(async () => {

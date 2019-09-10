@@ -1,9 +1,54 @@
 Angular is a Single Page Application(SPA)
 --> index.html is the only web page in the whole application and contains the main page of application
-
+Angular CLI :
+      A command line interface for angular
+      -- build an angular application
+      -- generate angular files
+      -- execute application
+      -- run unit and end to end test
+      -- prepare application for development
+      to install angular cli
+        npm i -g @angular/cli
+      to create a new angular application
+         ng new application_name
+      .tsconfig - for typescript configuration
+      polyfills file - is for browser configurations
+      to get help
+         ng new --help
+      to run angular application  launches a server
+         ng serve
+      to run angular application and at the same time open in browser - launches a server in browser
+          ng serve --open or ng serve -o
+      to run angular application on different port
+          ng serve --port
+      to test angular application unit-testing- run unit testing using karma
+          ng test  -- use karma [check files with .spec.ts ]
+      to use e2e-end to end testing - run end to end tests using protractor
+          ng e2e
+      to use angular application deployment
+          ng build
+          it generate two version files in dist folder
+          one with prefix es5 and other with es2015
+          because some browser does not support es2015
+          so deploying both sets of files and browser download the appopriate set.This process is called differential loading
+          TreeShaking:shakes up our code to drop any dead branches[unused]
+      to use in production mode
+          ng build --prod
 using CLI to generate service,interface,pipes,components,enum,directive,class,module,library,serviceWorker,guard,appShell,application etc.
   ng generate component componentName -> create a component in a folder named componentName generate/g
   to not to generate a folder used --flat or --f  at the end of the line
+  while creating a feature module if we want to include the module in root module the use
+                    ng g m products/product --flat -m app
+   Abbreviations
+       g - generate
+       c - component
+       i -interface
+       g - guard
+       s - service
+       p - pipe
+       e - enum
+       d - directive
+
 Javascript Language Specification
    --> use ECMAScript(ES) versions ES3,ES5 ES 2015(ES6)
 NPM( Node Package Manager)
@@ -395,7 +440,7 @@ Guard - Sometimes,we want to limit access to routes ,we want routes only accessi
         2. canDeactivate : Guard navigation away from the current route
         3. resolve : to prefetch data before activating a route
         4. canLoad : prevent asynchronous routing
-Module - is a class with NgModule decorator
+Angular Module - is a class with NgModule decorator
         purpose:
             - organize the pieces of application.
             - Arrange them into blocks
@@ -405,5 +450,52 @@ Module - is a class with NgModule decorator
                   other modules and reexport them into consolidated convenience module.
               All declared components,directives add pipes are private by defaults.
               only accesible to other components,directive,and pipes in the same module
+            -- An Angular Module can access other modules
+            -- An Angular Module has atLeast one Component called AppComponent called the root application Component
+            -- The Bootstrap array of Angular Module defines that this is the starting point of application
+                 Every Application must Bootstrap atLeast one Component,the root application component
+                 The bootstrap array should only be used in the root application module called the AppModule
+                   bootstrap: [AppComponent]
+            -- Declaration Array : every component,directive,pipes created is declared by angular module.we used
+                                  the ngModule to define the components,directive and pipes that belong to that module
+                                   in declarations array.
+                             -- Every component,directive,pipe created must belong to one and only one angular module
+                             -- Only declare components,pipes,directives in this array.
+                             -- Never redeclare components,pipes,directives that belong to another module.
+                             -- All declared components,directives,pipes are private by default,They are only accessible
+                                    to other components,pipes,directives declared in the same module.
+                             -- The angular module provides the template resolution environment for its components
+                                    templates.
+            -- Exports Array : of the ngModule decorator allow us to share angular module's components,directives,pipes
+                               with other modules.
+                               -- we can also re-export system application modules such as FormsModule,HttpClientModule.
+                               -- we can re-export third-party modules such as material design Material Design is a set
+                                   of high quality user-interface components including buttons,and dialogs.
+                               -- we can reexport our own module
+                               -- Export any component,directive and pipe if other component need it.s
+                               -- Re-export modules to re-export their components,directives and pipes.
+                               -- we can re-export something without importing it first.
+                               -- never export a service
+            -- Imports Array : An angular module can be extended by importing capabilities from angular modules,
+                                third party modules,route module,custom modules,
+                                -- importing a module makes available components,directives and pipes from that module
+                                -- only import what module needs
+                                -- importing a module cannot provide access to its imported modules.
+            -- Providers Array : Angular module can also register service provider for application,
+                                  we used providedIn property of the injectables() ,not the provider array of angular
+                                  module.
+                                -- any service provider added to the provider array is registered at the root of
+                                    application.
+                                -- don't add services to the provider array of a shared module
+Feature Modules : help us partition our application into logical groupings with separate concerns.
+                    HttpModule only be imported at the root module,don't import into feature module instead
+                     we used the system CommonModule ,common-module exposes the *ngIf and *ngFor directives.
+Shared Module : organize a set of commonly used pieces into one module and then exports those pieces so available to
+                 any module that import that shared module.
+                 I used the below code on terminal for this purpose:
+                     ng g m shared/Shared --flat -m products/product.module
+                 it will create sharedModule and at the same time add it into productModule
+----------------------------------------------------------------------------------------------------------------
+Angular Modules
+------------------------------------
 
-            -

@@ -1,5 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -7,6 +8,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [
+        RouterTestingModule]
     }).compileComponents();
   }));
 
@@ -16,16 +19,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'AngularGettingStarted'`, () => {
+  it(`should have as title 'Angular Getting Started'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('AngularGettingStarted');
+    expect(app.pageTitle).toEqual('Angular Getting Started');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span h1').textContent).toContain('Welcome To Angular:Getting Started');
+    expect(compiled.querySelector('div').textContent).toContain('Angular Getting Started');
   });
 });
