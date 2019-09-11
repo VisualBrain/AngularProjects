@@ -1,0 +1,2 @@
+ng lint my-app --format stylish --> will lint and format the output
+ng lint my-app --help --> show help for linting a project
