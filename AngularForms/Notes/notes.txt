@@ -41,4 +41,12 @@ use async while iterating over an array having output in the form of Observable
          in html
        <option>  *ngFor='let i of name | async' </option>
 
+--------------------------------------------------------------------
+ngx-bootstrap using
+For buttons use
+ ng add ngx-bootstrap --component buttons
+to add datepicker
+ ng add ngx-bootstrap  --component datepicker
+to add timepicker
+ng add ngx-bootstrap  --component timepicker
 
