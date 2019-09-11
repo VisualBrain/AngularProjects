@@ -1,0 +1,149 @@
+ng serve -o => opens in Default browser
+ng serve --port => port to listen when serve e.g ng serve --port 8843
+ng serve --live-reload => reload the server on change ,we can also stop live-reload using ng serve --live-reload false
+ng serve --ssl => serve using https
+to configure proxy
+ng serve --proxy-config => proxy configuration file
+
+//Blueprint
+The angular cli generated from Blueprint
+  blueprint defines the files
+     options are for customizae the blueprint
+  ng generate <blueprint> options
+  e.g ng generate component --flat
+  here blueprint is component and options are --flat
+-d = dry-run
+options while generating blueprints are:
+--flat ==> should a folder be created
+--inline-template(-t) ==> will the template in the .ts file
+--inline-style (-s) ==> will the style include in the .ts file
+--spec ==> will generate a spec e.g --spec false
+--view-encapsulation(-v) ==> View encapsulation strategy
+    ng g c orders --view-encapsulation Emulated or ng g c orders -v Emulated
+     here Emulated,Native,None,ShadeDom are arguments of view encapsulation
+    it will write  encapsulation: ViewEncapsulation.Emulated in .ts file contain directive @Component
+
+--change-detection(-c) ==> change detection strategy
+             ng g c orders --change-detection OnPush or ng g c orders -c OnPush
+             here OnPush,Default are the argument of --change-detection
+               changeDetection: ChangeDetectionStrategy.OnPush in @Component in .ts file
+ng generate component pet --inline-template --inline-style ==>  put template and css in .ts file
+with aliases ng g c pet -t -s
+ng generate component pet --flat ==> does not create a folder for this component
+ng g c pet --prefix hwa ==> will generate the component with selector prefix hwa e.g hwa-pet
+
+to generate new Directory
+ ng g d directiveName 
+
+to generate new class
+ng g cl className ==> create .ts file
+
+to generate enum
+ng g e enumName 
+
+to generate pipe
+ng g p pipeName
+
+to generate module
+ng g m moduleName
+
+to not to generate spec
+ng g m Moduel --spec false
+
+to generate module with ROUTING
+ng g m moduleName --spec false  --routing
+
+to generate guard
+ng g guard guardName
+
+Building angular
+use ng -build <options>
+here options are
+> --source-map ==> ng build --source-map - generates a source map
+> --aot => ng build --aot -  ahead of time compilation
+> --watch(-w) => ng build --watch - watch and rebuild 
+angular build help us compile our application code
+-- compile the app to output Directory
+-- Build target define the output
+-- production(prod) build add uglification and TreeShaking(shakes out all the dead code we are not using)
+All builds used bundling
+
+to analyze our build we need to install another package
+ npm install webpack-bundle-analyzer --save-dev
+ then run ng build --stats-json
+ npx webpack-bundle-analyzer dist/projectName/stats-es2015.json
+
+or 
+npm install source-map-explorer --save-dev
+ng build
+npx source-map-explorer dist/projectName/main.js
+
+ng build vs ng build --prod
+target : how to optimize the source files
+ng build 
+    ng build hitting on environment.ts
+    cache-busting(important if putting on web) --> ng build -> only images referenced in css
+    source-map generated
+    extracted css : global css output to .js
+    uglification and tree shaking is not done in ng build
+    bundling
+ng build -prod
+     - hitting on environment.prod.ts
+     - cache-busting  - all build files
+     - source-map not generated
+     - extracted css - output to css
+     - uglification,aot,tree shaking is done
+     - bundling
+
+
+using angular material
+ng add @angular/material
+generate material component
+ng g @angular/material:material-nav --name navigation ==> it will create navigation components
+ng g @angular/material:material-table --name customerlIST
+
+Unit testing
+ng test ==> execute tests on all *.spec.ts files  ==> run test and re-run when file changes
+ng test --code-coverage  ==> generate code coverage report (Default false)
+   report is generated in /coverage folder
+   report folder is configurable in karma.conf.js
+ng test --progress ==> log progress to console (Default true)
+ng test --sourcemaps ==> generate sourcemaps (Default true)
+ng test --watch false ==> run a test a single time
+
+End to End testing
+ng e2e ==> compiles and serve on random port and runs end to end tests`
+ng g application newOne to generate newApplication inside angular prject
+it will be like this
+"projects":{
+     "AngularCli": {
+    },
+    "helpme": {
+    }
+}
+
+to create library
+ng g library <name> <options> cli update tsconfig.json to look for your library reference
+must build your library for your app to see it
+ng build library-name
+
+options for library
+--dryRun(-d) ==> show the files that will be created
+--entry-file ==> path to create library's public API file
+--skip-package.json ==> do not add dependencies to package.json
+--skip-ts-config ==> do not update tsconfig.json for dev experience
+
+how to use library
+angular cli find libraries in the tsconfig paths then in the node_modules folder
+must build it before use it using ng build libraryName
+import it using import {libraryName} from './librarylocation'
+keep your public_api.ts file current
+
+publishing your library
+ng build libraryName --pro
+cd dist/libraryName
+npm publish
+
+to generate service in logger 
+ng g s serviceName --project libraryName
+e.g ng g s logger --project mylib
