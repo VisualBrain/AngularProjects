@@ -1,0 +1,55 @@
+ng new ngtest --skip-install
+ng new my-app --dry-run -> report all the files that are going to create but doesn't write the files
+                          in other way- Don't write the files,but report them
+ng new my-app --skip-install -> generate without running npm install
+ng new --help
+if we use ng new my-app then it will create the component selector with prefix app
+ng new my-app --prefix myapp- by using this,it will create the component-selector with prefix myapp
+
+to omit not to generate spec.ts file while creating new app
+ng new my-app --skip-tests --prefix myapp --skip-install
+
+to create styles with scss or any others while creating new app
+ng new my-app --skip-tests --prefix myapp --skip-install --style scss = styles should use SASS
+  it will generate the scss stylesheets
+to add routing while creating app use
+ng new my-app --skip-tests --routing --prefix appp - it will create the app-routing.module.ts
+
+to include inline-style
+  ng new my-app --inline-style or ng new my-app -s
+to include inline-template use
+  ng new my-app --inline-template or ng new my-app -t
+
+ng new my-app -st -> will include both inline-style and inline-templatein ts file
+
+
+shortcuts
+--skip-tests = -S
+--inline-style = -s
+--inline-template = -t
+--skip-git = -g
+--force = -f
+--dry-run = -d
+--collection = -c
+
+--skip-tests = Don't generate spec files
+--skip-git = Don't add project to git
+--prefix ma = Set the default selector prefix
+
+/-----------------------------------------------------------------------/
+we can manually change the configuration to use scss instead of css
+in angular.json
+ "AngularCli": {
+      "projectType": "application",
+
+      "schematics": {
+       "@schematics/angular:component":{"styleext":"scss"} --> we are telling it to use the style extension of scss
+       },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+
+/----------------------------------------------------------------------/
+to find where are our config files
+use ng config indicate the json path
+--global (or -g) flag sets global angular.json
